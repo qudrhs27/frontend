@@ -1,0 +1,50 @@
+p {
+  color: blue;
+}
+
+#LastName {
+  color: red;
+}
+
+div.intro {
+  background-color: gold;
+}
+
+h1,
+h3,
+th {
+  color: green;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+h1:hover {
+  background-color: aqua;
+}
+
+[title~="beautiful"] {
+  text-decoration: underline;
+}
+
+p.myquote {
+  border: 2px solid black;
+}
+
+ul#Listfriends + .myquote {
+  border: 2px dotted black;
+}
+
+table tr:nth-child(2n) {
+  background-color: orange;
+}
+
+table tr:first-child {
+  background-color: burlywood;
+}
+
+table tr > th {
+  color: white;
+}
