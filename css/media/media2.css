@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: yellow;
+  height: 100px;
+}
+
+body {
+  background-image: url(../data/bg0.jpg) no-repeat fixed;
+  background-size: cover;
+}
+
+/* 태블릿 가로 및 저해상도 노트북, pc화면 */
+@media screen and (max-width: 1280px) {
+  body {
+    background-image: url(../data/bg0.jpg) no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+/* 태블릿 세로 */
+@media screen and (max-width: 1024px) {
+  body {
+    background-image: url(../data/bg1.jpg) no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+/* 저해상도 태블릿 */
+@media screen and (max-width: 767px) {
+  body {
+    background-image: url(../data/bg2.jpg) no-repeat fixed;
+    background-size: cover;
+  }
+}
+
+/* 스마트폰 */
+@media screen and (max-width: 480px) {
+  body {
+    background-image: url(../data/bg3.jpg) no-repeat fixed;
+    background-size: cover;
+  }
+}
