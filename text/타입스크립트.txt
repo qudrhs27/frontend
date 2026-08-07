@@ -1,0 +1,46 @@
+타입스크립트 : 자바스크립트에 타입 지정
+node 이름.js
+node 이름.ts (X) => js 변환후 실행해야 함
+
+node
+  npm : Node Package Manager => Node.js 패키지(라이브러리) 관리자
+    다른 사람이 만들어 놓은 라이브러리 설치하고 관리 가능
+
+컴퓨터 전체 사용
+npm install -g 패키지명
+  -g (== --global) : 전역설치
+
+현재 프로젝트에만 적용
+ npm install -D 패키지명 : 개발용 패키지 설치(개발할 때만 필요한 프로그램) ex)typescript, prettier, vite...
+     -D (== --save-dev)
+
+  npm install 패키지명 : 해당 패키지 설치
+
+
+패키지 제거
+npm uninstall typescript
+
+1번)
+npx : 설치된 패키지의 실행 파일을 실행하는 도구
+tsc를 이용해서 타입스크립트 파일을 js로 컴파일
+npx tsc src/test => test.js => node test
+
+----------------------------------------------------
+2번)
+tsc --init
+  tsconfig.json : 타입스크립트 환경설정 정보 저장
+
+npx tsc src/test => dist/test.js => node test
+ts 파일 작성 => 컴파일 => js 파일 실행
+----------------------------------------------------
+ts-node : 타입스크립트를 컴파일 없이 바로 실행
+
+npx ts-node src/test.ts
+----------------------------------------------------
+
+npm uninstall -g ts-node typescript
+  
+npm install -D typescript@5.9.2 ts-node
+npm list
+
+

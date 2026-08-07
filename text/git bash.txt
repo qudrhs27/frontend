@@ -1,0 +1,137 @@
+git
+
+=> 로컬파일관리
+
+2. 환경설정
+git config --global user.name "본인이름"
+git config --global user.email "본인이메일"
+
+3. 모든 걸 관리 가능
+코드, 문서, 이미지 등...
+
+============================
+관리하고자 하는 대상이 들어있는 폴더 => 초기화
+
+ex) gittest (관리 대상 폴더)
+
+git init => .git 폴더 생성
+	   master 브랜치 생성(주 브랜치) or main 브랜치로 하기도함
+
+1) 새로운 파일 생성 : Untracked files
+2) git add "파일명" 추가: Staged 영역
+3) git commit -m "메세지" : 로컬저장소 저장
+ex) git commit -m "hello.py 생성"
+참고) i(insert)/esc => :wq (write quit)
+커밋 메세지 필수임
+
+관리하고 있던 기존 파일(commit이 된 파일) 수정
+1) modified 상태
+2) git add modifiedfile 추가: Staged 영역
+3) git commit -m "메세지"
+
++ 수정 상태일때 2,3 같이 실행 가능하다.
+git commit -a -m "메세지"
+
+관리하고 있던 기존파일 삭제
+1) deleted 상태
+
+=================
+
+.gitignore 파일 작성
+관리대상 폴더에서 제외하고 싶은 파일 작성
+.venv, .env 제외
+=====================
+커밋 히스토리 조회
+git log
+git log -2: 최근 2개만 확인
+
+----------------------
+파일이 staging 영역이 존재할때
+git restore --staged 파일명
+-----------------------
+git diff : 기존 파일과 비교
+-----------------------
+직전 커밋 메세지 수정
+git commit --amend
+-----------------------
+git revert <커밋해시>
+커밋을 취소 => 단 커밋 내역은 남기고 내용만 취소
+-----------------------
+푸시하기 전 
+커밋 자체 제거
+git reset --soft 4e0a61<커밋해시> 
+-> 지정한 해시값 이전까지 커밋 제거(파일(소스) staged 에 남음)
+
+git reset --soft HEAD~1(해시값 대신)(몇단계 되돌릴 것인지 명령어)
+
+git reset --mixed <커밋해시> : 파일(소스) untracked 에 남음
+
+git reset --hard <커밋해시> : 파일(소스) 가 날아감
+
+커밋 자체를 제거
+-----------------------
+
+브랜치
+git branch
+
+1) 브랜치 이름 변경 : git branch -m main
+2) 브랜치 새로 생성 : git branch 브랜치명
+- 주 브랜치 내용을 놔두고 새로운 기능 추가
+- 협업시 개별 브랜치 생성
+
+3) 브랜치 이동: git checkout 브랜치명
+	      git switch 브랜치 명
+checkout: 브랜치 이동 + 이동시 브랜치 복사해서 이동하기
+
+-----------------------
+
+git branch hotfix
+
+병합
+hotfix 브랜치에서 코드 수정 => main 브랜치에 병합하기
+원격 저장소 코드 수정 => 원격저장소main == 로컬저장소 main
+충돌 발생 가능성 o
+
+git push 전에 무조건 원격 저장소 내용을 (pull)가져와야한다.
+-> 원격저장소 병합 : git pull
+	-> (git fetch(원격저장소의 최신 변경 내용 가져오기) + git merge(현재 브랜치에 병합)
+
+github = 원격 브랜치/원격 저장소라고도 부름
+원격 저장소: github, gitlab
+
+
+hotfix에 있고
+git merge main : hotfix 브랜치에 main 브랜치를 병합해줘
+
+
+
+원격 저장소 연동하기 
+1. github 에서 new repository
+2. 로컬 저장소와 연동 
+-> git remote add origin https://github.com/a01024912597-12/gittest.git
+ origin 별칭 지정
+3. 로컬 저장소 커밋 내용을 원격 저장소로 push 한다 
+-> git push -u origin main
+
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+1. 무시 가능
+2. 엔터:LF(linux, macOS)
+       CRLF(windows) => 타자
+
+
+
+hotfix hell.py 수정 -> commit
+main hello.py 수정 -> commit
+main에서 hotfix 브랜치 merge
+git merge hotfix
+
+
+1. 본인 브랜치 생성
+2. 본인 브랜치에서 파일 작성 => commit
+3. main 병합
+4. 본인 브랜치 github push
+5. 동일한 파일 수정 후 처리 
+
+
+
+
