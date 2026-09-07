@@ -1,0 +1,33 @@
+사전작업
+node.js 설치
+ npm (패키지 관리도구) == 파이썬 pip
+
+vite : 빌드도구
+ 개발 중 작성한 여러 개의 파일을 하나 또는 몇 개로 묶는 도구
+
+ESLint : 문법 검사
+
+npm create vite@latest
+
+1. vite 기반으로 react 프로젝트 생성하기 
+npm create vite@latest 프로젝트명
+  press r + enter to restart the server
+  press u + enter to show server url
+  press o + enter to open in browser
+  press c + enter to clear console
+  press q + enter to quit
+
+npm run dev : 작성하는 코드가 실시간으로 반영됨(개발 시 사용)
+
+개발 종료 후 build
+
+npm run build : 서버에 올려서 사용자들에게 웹페이지로 배포될 파일들을 코드를 모아 컴파일
+ dist 폴더 생성
+
+
+npm run preview : build를 통해 나온 결과물을 테스트하는 단계
+ http://localhost:4173/
+
+소스코드
+jsx (javascript xml)
+tsx (typescript xml)
