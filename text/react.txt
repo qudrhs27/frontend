@@ -8,6 +8,8 @@ vite : 빌드도구
 ESLint : 문법 검사
 
 npm create vite@latest
+npm install tailwindcss @tailwindcss/vite
+npm install react-router-dom
 
 1. vite 기반으로 react 프로젝트 생성하기 
 npm create vite@latest 프로젝트명
@@ -31,3 +33,54 @@ npm run preview : build를 통해 나온 결과물을 테스트하는 단계
 소스코드
 jsx (javascript xml)
 tsx (typescript xml)
+
+
+라우팅 : 링크(페이지 이동)
+
+<a href='index.html'>인덱스</a>
+
+컴포넌트
+
+링크관련
+
+a : html 태그
+ - 새로고침되면서 화면의 깜빡임 발생
+
+NavLink, Link : React-router-dom
+ - 새로고침 없이 화면이 변경됨
+ 
+● NavLink : active 클래스가 자동으로 부여
+ - 상단의 URL 과 NavLink의 to 속성값 일치시
+● Link : active 클래스 없는 상태
+
+Outlet
+● 중첩라우팅에서 자식 라우트를 렌더링할 위치를 지정
+● 공통으로 사용할 레이아웃 지정
+
+리액트에서는 use~~~ : 훅
+훅 : React가 제공하는 특별 함수
+ - React의 기능을 사용할 수 있음
+ - 컴포넌트의 최상위에서만 호출 가능
+ - React의 상태, 생명주기 등의 기능과 연결
+
+useSearchParams / useLocation
+
+useLocation
+● 현재 페이지의 전체 URL 정보를 가져올 수 있는 훅
+● pathname(현재경로)
+● search(쿼리스트링) : 문자열 형태
+
+useSearchParams
+● 현재 페이지의 쿼리 스트링을 개별항목으로 가져오거나 수정할 수 있는 훅
+
+useParams
+● 동적으로 생성되는 파라미터 가져오기
+
+/account/login
+/account/register
+/account/profile/3 + GET : 3번유저의 profile 가져와
+
+컴포넌트 생명주기 : useEffect() 훅
+마운트(화면에 그려짐), 업데이트(상태(state), 속성(props) 변경되어 다시 렌더링), 언마운트(화면에서 사라짐)
+
+서버에서 데이터 가져오기(json)

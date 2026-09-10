@@ -1,18 +1,27 @@
 import { useState } from "react";
 import type { Squares } from "../types/type";
 import Square from "./Square";
+import { calculatorWinner } from "../utils/util";
 
-const Board = () => {
+const Board = ({ isNext, squares, handlePlay }) => {
   // const initialSquares = [null, null, null, null, null, null, null, null, null]
-  const initialSquares: Squares = Array(9).fill(null);
+  // const initialSquares: Squares = Array(9).fill(null);
   // 9개의 Square 의 state 관리
-  const [squares, setSquares] = useState(initialSquares);
-  // X 나 O 를 관리
-  const [isNext, setIsNext] = useState(true);
+  // const [squares, setSquares] = useState(initialSquares);
+
+  // 승자관리
+  const winner = calculatorWinner(squares);
+
+  let status = "";
+  if (winner) {
+    status = "Winner : " + winner;
+  } else {
+    status = "Next Player : " + (isNext ? "X" : "O");
+  }
 
   const handleClick = (idx: number) => {
     // 이미 선택된 박스라면 선택 불가
-    if (squares[idx]) return;
+    if (squares[idx] || calculatorWinner(squares)) return;
 
     // ... === slice()
 
@@ -29,12 +38,14 @@ const Board = () => {
       copySquares[idx] = "O";
     }
 
-    setIsNext(!isNext);
-    setSquares(copySquares);
+    // setIsNext(!isNext);
+    // setSquares(copySquares);
+    handlePlay(copySquares);
   };
 
   return (
     <div>
+      <div>{status}</div>
       <div className="board-row">
         <Square value={squares[0]} handleClick={() => handleClick(0)}></Square>
         <Square value={squares[1]} handleClick={() => handleClick(1)}></Square>
