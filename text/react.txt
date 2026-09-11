@@ -10,6 +10,7 @@ ESLint : 문법 검사
 npm create vite@latest
 npm install tailwindcss @tailwindcss/vite
 npm install react-router-dom
+npm install react-icons
 
 1. vite 기반으로 react 프로젝트 생성하기 
 npm create vite@latest 프로젝트명
@@ -84,3 +85,7 @@ useParams
 마운트(화면에 그려짐), 업데이트(상태(state), 속성(props) 변경되어 다시 렌더링), 언마운트(화면에서 사라짐)
 
 서버에서 데이터 가져오기(json)
+
+
+구글 아이콘
+폰트 어썸
