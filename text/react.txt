@@ -89,3 +89,23 @@ useParams
 
 구글 아이콘
 폰트 어썸
+
+성능 최적화
+useRef()
+
+React Compiler
+=> 부모가 렌더링 시 관련없어도 자식 렌더링 같이 됨 => 관련없으면 렌더링 안되도록 해줌
+=> useMemo() : 계산결과 기억, 판단 후 적절하다고 판하다고 판단이 되면 이 부분도 해결해줌
+=> useCallback() : 함수 기억(부모가 자식에게 함수를 props 넘길때)
+
+
+useCallback() : 함수 기억(부모가 자식에게 함수를 props 넘길때)
+리렌더링 시 함수는 새롭게 생성됨
+
+useId() : 각 컴포넌트 인스턴스마다 고유한 ID 를 제공
+          언마운트 되기 전까지 동일한 ID 유지
+
+useState => useReducer
+
+useReducer
+ - 관리해야 할 상태 로직이 복잡할 때 사용

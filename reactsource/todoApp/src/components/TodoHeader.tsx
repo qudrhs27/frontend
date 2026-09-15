@@ -1,4 +1,4 @@
-function TodoHeader({ getTodosByCompleted }) {
+function TodoHeader({ getTodosByCompleted }: { getTodosByCompleted: (completed: string) => void }) {
   console.log("TodoHeader rendered");
   return (
     <div className="flex p-3">
