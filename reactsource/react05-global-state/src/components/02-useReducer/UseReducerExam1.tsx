@@ -7,7 +7,7 @@ const UseReducerExam1 = () => {
   // state : 상태 저장을 위한 변수
   // dispatch : 상태를 변경할 때 사용되는 함수를 호출(action 보내기)
   // reducer : 상태를 변경하기 위해 정의한 함수
-const [] = useReducer();
+
   const [user, userDispatch] = useReducer(userReducer, initUser);
   const { name, year, warning } = user;
 

@@ -109,3 +109,10 @@ useState => useReducer
 
 useReducer
  - 관리해야 할 상태 로직이 복잡할 때 사용
+ - 상태를 어떻게 변경할지 관리
+
+useContext() : 상태를 여러 컴포넌트에 어떻게 공유할지 관리
+1. Context로 사용할 객체 생성
+2. 생성된 Context 객체를 통해 Provider 생성
+3. 상태를 공유할 자식 컴포넌트를 Provider로 감싸기
+4. 자식 컴포넌트에서 공유된 값 사용
