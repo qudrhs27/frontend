@@ -7,12 +7,15 @@ type AuthContextType = {
   isLoggedIn: boolean;
   login: (id: string, password: string) => void;
   logout: () => void;
+  signup: (id: string, password: string, name: string) => void;
 };
 
 export type LoginFormState = {
   id: string;
   password: string;
 };
+
+export type SignupFormState = LoginFormState & { name: string };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
