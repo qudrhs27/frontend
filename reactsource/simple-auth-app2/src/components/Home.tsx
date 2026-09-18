@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../common/AuthContext";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const Home = () => {
-  const { isLoggedIn } = useAuth();
+  // redux-toolkit
+  const auth = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   return (
     <main className="min-h-[calc(100vh-65px)] bg-gray-50">
@@ -30,7 +32,7 @@ const Home = () => {
             로그인
           </Link>
           {/* 로그인 정보가 존재한다면 */}
-          {isLoggedIn && (
+          {auth.id && (
             <Link
               to="/mypage"
               className="rounded-lg border border-gray-300 bg-white px-6 py-3 font-medium text-gray-700 transition hover:bg-gray-100"

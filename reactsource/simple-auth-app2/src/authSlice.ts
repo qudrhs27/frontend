@@ -6,43 +6,32 @@ interface Todo {
   done: boolean;
 }
 
-// 타입 지정
-interface TodoState {
-  todos: Todo[];
-}
+export type LoginFormState = {
+  id: string;
+  password: string;
+};
 
-const initialState: TodoState = { todos: [] };
+export type SignupFormState = LoginFormState & { name: string };
+
+const initialState: LoginFormState = { id: "", password: "" };
 
 // 등록, 삭제, 전체삭제, done 수정(t<=>f)
-const todoSlice = createSlice({
-  name: "myTodos",
+const authSlice = createSlice({
+  name: "auth",
   initialState: initialState,
   reducers: {
-    addTodo: (state, action: PayloadAction<string>) => {
-      state.todos.push({
-        idx: Date.now(),
-        contents: action.payload,
-        done: false,
-      });
+    login: (state, action: PayloadAction<LoginFormState>) => {
+      state.id = action.payload.id;
+      state.password = action.payload.password;
     },
-    deleteTodo: (state, action: PayloadAction<number>) => {
-      state.todos = state.todos.filter((todo) => todo.idx !== action.payload);
-    },
-    updateTodo: (state, action: PayloadAction<number>) => {
-      // find() : id 일치한 todo
-      const todo = state.todos.find((todo) => todo.idx === action.payload);
-      // todo.done = !todo.done
-      if (todo) {
-        todo.done = !todo.done;
-      }
-    },
-    clearTodo: (state) => {
-      state.todos = [];
+    logout: (state) => {
+      state.id = "";
+      state.password = "";
     },
   },
 });
 
 // 액션 함수 내보내기
-export const { addTodo, deleteTodo, updateTodo, clearTodo } = todoSlice.actions;
+export const { login, logout } = authSlice.actions;
 
-export default todoSlice.reducer;
+export default authSlice.reducer;

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useAuth, type SignupFormState } from "../common/AuthContext";
+import { type SignupFormState } from "../authSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const Signup = () => {
   const [form, setForm] = useState<SignupFormState>({ id: "", password: "", name: "" });
   const { id, password, name } = form;
 
-  const { signup, isLoggedIn } = useAuth();
+  const auth = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,12 +29,10 @@ const Signup = () => {
       return;
     }
 
-    signup(id, password, name);
-    alert("회원가입에 성공하였습니다!");
     navigate("/login");
   };
 
-  if (isLoggedIn) {
+  if (auth.id) {
     return <Navigate to={"/mypage"} replace />;
   }
 

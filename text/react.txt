@@ -12,6 +12,7 @@ npm install tailwindcss @tailwindcss/vite
 npm install react-router-dom
 npm install react-icons
 npm install react-redux @reduxjs/toolkit
+npm install axios
 
 1. vite 기반으로 react 프로젝트 생성하기 
 npm create vite@latest 프로젝트명
@@ -129,3 +130,11 @@ redux
 immer : 알아서 불변성을 지켜줌
 원본 수정 가능
 push()
+
+
+외부에서 데이터 가져오기(내부서버로 대체 예정)
+https://jsonplaceholder.typicode.com/posts
+ => fetch(), axios()
+
+수정 => 수정하는 대상을 가져와서 화면에 보여주고
+내용 수정 후 수정 => PUT
