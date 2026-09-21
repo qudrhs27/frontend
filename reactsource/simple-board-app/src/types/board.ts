@@ -7,14 +7,16 @@ export type Board = {
   body: string;
 };
 
-// create (title,body,userId)
-// update (id,title,body,userId)
-export type BoardUpSert = Omit<Board, "id"> & { id?: number };
-
-export type CommentsType = {
+export type Comment = {
   postId: number;
   id: number;
   name: string;
   email: string;
   body: string;
 };
+
+export type BoardComment = Board & { comments: Comment[] };
+
+// create (title,body,userId)
+// update (id,title,body,userId)
+export type BoardUpSert = Omit<Board, "id"> & { id?: number };

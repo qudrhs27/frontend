@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { BoardUpSert, CommentsType } from "../types/board";
+import type { BoardUpSert } from "../types/board";
 
 const url = "https://jsonplaceholder.typicode.com/posts";
 
@@ -33,12 +33,7 @@ export const putBoard = async (id: string, board: BoardUpSert) => {
 };
 
 // 댓글 가져오기
-export const getComments = async (id: string) => {
+export const getBoardComments = async (id: string) => {
   const response = await axios.get(`${url}/${id}/comments`);
-  return response.data;
-};
-
-export const postComments = async (id: string, comments: CommentsType) => {
-  const response = await axios.post(`${url}/${id}/comments`, comments);
   return response.data;
 };

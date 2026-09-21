@@ -1,11 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { deleteBoard, getComments } from "../apis/boardApi";
+import { deleteBoard } from "../apis/boardApi";
 import useBoard from "../hooks/useBoard";
 
 const BoardDetail = () => {
   // 주소줄에 있는 id 가져오기
   const { id } = useParams();
   const navigate = useNavigate();
+  if (!id) return;
   const { board, loading } = useBoard(id);
 
   const handleRemove = async (id: string) => {
@@ -17,20 +18,6 @@ const BoardDetail = () => {
 
       // 페이지 이동
       navigate("/boards");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleChange = async (id: string) => {
-    if (!id) return;
-
-    try {
-      const comments = await getComments(id);
-      console.log(comments);
-
-      // 페이지 이동
-      //   navigate("/boards");
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +48,7 @@ const BoardDetail = () => {
         </div>
 
         {/* Content */}
-        <div className="min-h-[400px] px-8 py-10 leading-8 text-slate-700">
+        <div className="min-h-100 px-8 py-10 leading-8 text-slate-700">
           <p>{board?.body}</p>
         </div>
 
@@ -97,7 +84,15 @@ const BoardDetail = () => {
         </div>
       </article>
       {/* 댓글 보여주기 posts/${id}/comments */}
-      <ul>{}</ul>
+      <section className="rounded-xl border border-slate-200 bg-white">
+        <ul>
+          {board?.comments.map((comment) => (
+            <li key={comment.id}>
+              {comment.body} - {comment.name}
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 };

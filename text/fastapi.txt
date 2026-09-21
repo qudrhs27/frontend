@@ -1,0 +1,7 @@
+서버 프로그램 작성
+파이썬 - fastapi, flask, django
+자바 - spring
+
+python 개발환경
+1) uv
+2) python 다운로드
