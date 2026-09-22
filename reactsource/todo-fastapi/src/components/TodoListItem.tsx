@@ -23,7 +23,7 @@ const TodoListItem = ({ todo, onDelete, onUpdate }: TodoProps) => {
             onUpdate(id);
           }}
         />
-        <div className={`ml-2 flex items-center `}>
+        <div className={`ml-2 flex items-center ${completed ? "text-gray-400 line-through" : ""}`}>
           {important && <MdNotificationImportant className="mr-1 text-red-500" />}
           <span>{title}</span>
         </div>

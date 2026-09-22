@@ -16,7 +16,7 @@ const BoardEdit = () => {
 
     try {
       const result = await putBoard(id, board);
-      console.log(result);
+      console.log("수정된 board ", result);
 
       // 페이지 이동 => 상세조회
       navigate(`/boards/${id}`);

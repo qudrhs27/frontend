@@ -14,7 +14,7 @@ const BoardDetail = () => {
 
     try {
       const result = await deleteBoard(id);
-      console.log(result);
+      console.log("삭제 후", result);
 
       // 페이지 이동
       navigate("/boards");

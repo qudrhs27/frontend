@@ -1,9 +1,8 @@
 import axios from "axios";
-import type { BoardUpSert } from "../types/board";
 
-const url = "http://127.0.0.1:8000/boards";
+const url = "http://127.0.0.1:8000/tasks";
 
-export const getBoards = async () => {
+export const getTask = async () => {
   const response = await axios.get(`${url}`);
   return response.data;
 };
