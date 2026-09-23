@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 import ListTask from "./ListTask";
+import { deleteTask, getTasks, postTask, putTask } from "../apis/taskApi";
 
 export type TaskProps = {
   id: number;
@@ -8,57 +9,49 @@ export type TaskProps = {
   done: boolean;
 };
 
-const initialTasks: TaskProps[] = [
-  { id: 0, text: "Visit Kafka Museum", done: true },
-  { id: 1, text: "Watch a puppet show", done: false },
-  { id: 2, text: "Lennon Wall pic", done: false },
-];
-
-let nextId = 3;
+export type TaskAdd = {
+  text: string;
+  done: boolean;
+};
 
 const MainTask = () => {
   // 여행계획
-  const [tasks, setTasks] = useState<TaskProps[]>(initialTasks);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   // 여행계획 추가 함수
-  const handleAddTask = (text: string) => {
-    // tasks 에 내용 추가
-    // tasks.push('') => X
-    setTasks([
-      ...tasks,
-      {
-        id: nextId++,
-        text: text,
-        done: false,
-      },
-    ]);
+  const handleAddTask = async (text: string) => {
+    const newTask = await postTask({ text: text, done: false });
+    setTasks([...tasks, newTask]);
   };
   // 여행계획 수정
   // text 내용 수정, done 완료여부 수정
-  const handleUpdateTask = (task: TaskProps) => {
-    setTasks(tasks.map((t) => (t.id === task.id ? { ...t, ...task } : t)));
+  const handleUpdateTask = async (task: TaskProps) => {
+    const updateTask = await putTask(String(task.id), task);
+
+    setTasks(tasks.map((t) => (t.id === task.id ? updateTask : t)));
   };
   // 여행계획 제거
-  const handleRemoveTask = (taskId: number) => {
-    // taskId : id
+  const handleRemoveTask = async (taskId: number) => {
+    const updateTask = await deleteTask(String(taskId));
     // tasks 에서 taskId와 일치하지 않는 task 추출해서 새로운 배열로 생성
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    setTasks(updateTask);
   };
-  // 여행계획 완료
-  const handleDoneTask = (taskId: number) => {
-    // taskId와 일치한 task를 찾아서 그 task done 값을 반대로 설정
-  };
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const tasks = await getTasks();
+      setTasks(tasks);
+    };
+
+    fetchTasks();
+  });
 
   return (
     <div className="mt-10 flex justify-center">
       <div className="w-full max-w-xl space-y-6 rounded-lg bg-white shadow-md">
         <h2 className="text-center text-2xl font-semibold">체코 프라하 여행</h2>
         <AddTask handleAddTask={handleAddTask} />
-        <ListTask
-          tasks={tasks}
-          handleUpdateTask={handleUpdateTask}
-          onRemoveTask={handleRemoveTask}
-        />
+        <ListTask tasks={tasks} handleUpdateTask={handleUpdateTask} onRemoveTask={handleRemoveTask} />
       </div>
     </div>
   );
