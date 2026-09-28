@@ -40,7 +40,7 @@ export const deleteTodo = async (id: string) => {
 };
 
 // 수정
-export const putTodo = async (id: string, todo: TodoUpsert) => {
+export const putTodo = async (id: string, todo: { completed: boolean }) => {
   const response = await axios.put(`${url}/${id}`, todo);
   return response.data;
 };

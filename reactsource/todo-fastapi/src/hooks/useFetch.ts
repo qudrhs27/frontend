@@ -17,7 +17,7 @@ const useFetch = () => {
     try {
       // 데이터 가져오기 함수 호출
       const serverData = await getTodos(completedFilter);
-      setTodos(serverData.todos);
+      setTodos(serverData);
     } catch (error) {
       console.log(error);
     } finally {
