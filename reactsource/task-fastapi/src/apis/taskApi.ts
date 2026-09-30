@@ -4,8 +4,8 @@ const url = "http://127.0.0.1:8000/tasks";
 
 // 전체조회, 수정(put, patch), 삭제, 추가
 
-export const getTasks = async () => {
-  const response = await axios.get(`${url}`);
+export const getTasks = async (page: number, size: number) => {
+  const response = await axios.get(`${url}`, { params: { page: page, size: size } });
   return response.data;
 };
 

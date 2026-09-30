@@ -49,7 +49,9 @@ const ItemTask = ({ task, handleUpdateTask, onRemoveTask }: TaskItemProps) => {
         {isEditing ? (
           <input type="text" className="border p-2 w-full" value={text} onChange={(e) => setText(e.target.value)} />
         ) : (
-          <span className="text-gray-800">{text}</span>
+          <span className="text-gray-800">
+            {task.id}-{text}
+          </span>
         )}
       </div>
       <div className="flex items-center gap-2">

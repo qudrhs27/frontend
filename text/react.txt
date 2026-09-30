@@ -138,3 +138,14 @@ https://jsonplaceholder.typicode.com/posts
 
 수정 => 수정하는 대상을 가져와서 화면에 보여주고
 내용 수정 후 수정 => PUT
+
+
+상단의 완료/미완료/전체 선택 =>
+getTodosByCompleted() => useSearchParam 변경
+=> URL 변경 =>
+const page = Number(searchParams.get("page")) || 1;
+const size = Number(searchParams.get("size")) || 10;
+const completedParam = searchParams.get("completed");
+const completed = completedParam === null ? null : completedParam === "true";
+
+useEffect() 실행 => fetchData()
