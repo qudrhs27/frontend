@@ -89,7 +89,7 @@ const ListTask = ({ tasks, handleUpdateTask, onRemoveTask }: TaskListProps) => {
   return (
     <div className="space-y-3">
       {tasks.map((task) => (
-        <ItemTask task={task} handleUpdateTask={handleUpdateTask} onRemoveTask={onRemoveTask} />
+        <ItemTask task={task} handleUpdateTask={handleUpdateTask} onRemoveTask={onRemoveTask} key={task.id} />
       ))}
     </div>
   );

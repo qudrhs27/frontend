@@ -1,4 +1,30 @@
 // 서버로부터 내려올 데이터 타입
+export type BoardCreate = {
+  user_id: number;
+  title: string;
+  contents: string;
+};
+
+export type BoardUpdate = {
+  title: string;
+  contents: string;
+};
+
+export type BoardResponse = {
+  id: number;
+  title: string;
+  contents: string;
+  user_id: number;
+  created_at: string;
+};
+
+export type BoardPageResponse = {
+  items: BoardResponse[];
+  total: number;
+  page: number;
+  size: number;
+  total_pages: number;
+};
 
 export type Board = {
   userId: number;

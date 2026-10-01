@@ -1,14 +1,15 @@
 import axios from "axios";
 import type { BoardUpSert } from "../types/board";
 
+// fastapi router 랑 통신
+
 const url = "http://127.0.0.1:8000/boards";
 
-export const getBoards = async () => {
-  const response = await axios.get(`${url}`);
+export const getBoards = async (page: number, size: number) => {
+  const response = await axios.get(`${url}`, { params: { page, size } });
   return response.data;
 };
 
-// https://jsonplaceholder.typicode.com/posts/1
 export const getBoard = async (id: string) => {
   const response = await axios.get(`${url}/${id}`);
   return response.data;

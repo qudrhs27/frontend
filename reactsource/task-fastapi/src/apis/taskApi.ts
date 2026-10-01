@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { TaskAdd } from "../components/MainTask";
 
 const url = "http://127.0.0.1:8000/tasks";
 
@@ -10,7 +11,7 @@ export const getTasks = async (page: number, size: number) => {
 };
 
 // 삽입
-export const postTask = async (task) => {
+export const postTask = async (task: TaskAdd) => {
   const response = await axios.post(`${url}`, task);
   return response.data;
 };
@@ -22,7 +23,7 @@ export const deleteTask = async (id: string) => {
 };
 
 // 수정
-export const putTask = async (id: string, task) => {
+export const putTask = async (id: string, task: TaskAdd) => {
   const response = await axios.put(`${url}/${id}`, task);
   return response.data;
 };
