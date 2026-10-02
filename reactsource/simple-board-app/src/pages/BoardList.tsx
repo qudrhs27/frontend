@@ -91,7 +91,10 @@ const BoardList = () => {
               <tr key={post.id} className="transition hover:bg-slate-50">
                 <td className="px-6 py-5 text-center text-slate-400">{post.id}</td>
                 <td className="px-6 py-5">
-                  <Link to={`/boards/${post.id}`} className="font-medium text-slate-800 hover:text-indigo-600">
+                  <Link
+                    to={`/boards/${post.id}?page=${currentPage}&size=${size}`}
+                    className="font-medium text-slate-800 hover:text-indigo-600"
+                  >
                     {post.title}
                   </Link>
                 </td>

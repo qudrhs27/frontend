@@ -1,17 +1,22 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { putBoard } from "../apis/boardApi";
 import BoardForm from "../components/BoardForm";
 import useBoard from "../hooks/useBoard";
-import type { BoardUpSert } from "../types/board";
+import type { BoardUpdate } from "../types/board";
 
 const BoardEdit = () => {
   // 1. get  => 수정하는 대상을 가져와서 화면에 보여주기
   // detail과 같은 코드
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const size = Number(searchParams.get("size")) || 10;
+
   const { board, loading } = useBoard(id);
 
-  const onSubmit = async (board: BoardUpSert) => {
+  const onSubmit = async (board: BoardUpdate) => {
     if (!id) return;
 
     try {
@@ -19,7 +24,10 @@ const BoardEdit = () => {
       console.log("수정된 board ", result);
 
       // 페이지 이동 => 상세조회
-      navigate(`/boards/${id}`);
+      navigate({
+        pathname: `/boards/${id}`,
+        search: `?page=${currentPage}&size=${size}`,
+      });
     } catch (error) {
       console.log(error);
     }
