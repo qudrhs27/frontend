@@ -4,6 +4,7 @@ import { deleteComment, postComment, putComment } from "../apis/commentApi";
 import ReplyComp from "../components/ReplyComp";
 import useBoard from "../hooks/useBoard";
 import type { CommentCreate } from "../types/board";
+import { useAuth } from "../common/AuthContext";
 
 const BoardDetail = () => {
   // 주소줄에 있는 id 가져오기
@@ -18,6 +19,8 @@ const BoardDetail = () => {
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
   const size = Number(searchParams.get("size")) || 10;
+
+  const { user } = useAuth();
 
   const handleRemove = async (id: string) => {
     if (!id) return;
@@ -124,7 +127,9 @@ const BoardDetail = () => {
                   search: `?page=${currentPage}&size=${size}`,
                 })
               }
-              className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50 
+              disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-200"
+              disabled={user?.user_id !== board.user_id}
             >
               수정
             </button>
@@ -132,11 +137,12 @@ const BoardDetail = () => {
             <button
               onClick={() => {
                 if (confirm("정말로 삭제하시겠습니까?")) {
-                  if (!id) return;
                   handleRemove(id);
                 }
               }}
-              className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+              className="rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-800
+              disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-200"
+              disabled={user?.user_id !== board.user_id}
             >
               삭제
             </button>
