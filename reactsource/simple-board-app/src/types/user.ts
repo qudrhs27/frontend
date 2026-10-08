@@ -8,3 +8,9 @@ export type User = {
   email: string;
   name: string;
 };
+
+export type UserSignup = {
+  email: string;
+  name: string;
+  password: string;
+};
